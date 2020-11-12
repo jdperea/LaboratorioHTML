@@ -6,25 +6,88 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
 
-    <link rel='shortcut icon' href='' type='image/x-icon' sizes="16x16" />
+    <link rel='shortcut icon' href='../images/cinema_3d_glasses_icon-icons.com_66129.ico' type='image/x-icon' sizes="16x16" />
     <!-- ================== ESTILOS CSS ================== -->
-    <link href="" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+    <link href="../plugins/DataTables-1.10.22/css/jquery.dataTables.min.css" rel="stylesheet"/>
     <style>
 
     </style>
 
     <!-- ================== SCRIPTS JS ================== -->
-    <script src=""></script>
-    <script src=""></script>
+    <script src="../plugins/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
+    <script src="../plugins/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
 
-    <title>Title</title>
+    <title>Mi Página Juan Diego</title>
 </head>
 <body>
-
-
+<h1>Primer Titulo</h1>
+<table id="data_table" class="table dataTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Ciudad</th>
+        <th>País</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Ciudad</th>
+        <th>País</th>
+    </tr>
+    </tfoot>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td><button>Pedro</button></td>
+        <td>Pérez</td>
+        <td>Cali</td>
+        <td>Colombia</td>
+    </tr>
+    <tr>
+        <td align="center">2</td>
+        <td><b>Camila</b></td>
+        <td>Gómez</td>
+        <td>Bogotá</td>
+        <td>Colombia</td>
+    </tr>
+    <tr>
+        <td align="center">3</td>
+        <td><b>Jhon</b></td>
+        <td>Velasco</td>
+        <td>Lima</td>
+        <td>Perú</td>
+    </tr>
+    </tbody>
+</table>
 
 <!-- ================== SCRIPTS JS ================== -->
 <script>
+    $(document).ready( function () {
+        $('#data_table').DataTable({
+            //para cambiar el lenguaje a español
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "No se encontraron resultados",
+                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast":"Último",
+                    "sNext":"Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "sProcessing":"Procesando...",
+            }
+        });
+    });
 </script>
 </body>
 </html>
