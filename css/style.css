@@ -3,3 +3,20 @@ h1 {
     text-shadow: 2px 2px #1f1f1f;
     text-align: center;
 }
+
+tr:nth-child(even){
+    background-color: #c9c9c9;
+}
+tr:nth-child(odd){
+    background-color: #dcdcdc;
+}
+th {
+    background-color: darkred;
+}
+table, th, td {
+    border: 1px black solid;
+    border-collapse: collapse;
+}
+table {
+    width: 50%
+}
