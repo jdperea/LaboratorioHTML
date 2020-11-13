@@ -8,10 +8,10 @@ tr:nth-child(even){
     background-color: #c9c9c9;
 }
 tr:nth-child(odd){
-    background-color: #dcdcdc;
+    background-color: #a3a3a3;
 }
-th {
-    background-color: darkred;
+table.dataTable tbody th, table.dataTable thead th,table.dataTable tfoot th {
+    text-align: center;
 }
 table, th, td {
     border: 1px black solid;
@@ -19,4 +19,90 @@ table, th, td {
 }
 table {
     width: 50%
+}
+
+/* Forms */
+.btn {
+    border: none;
+    color: white;
+    padding: 14px 28px;
+    cursor: pointer;
+}
+
+.success {background-color: #4CAF50;}
+.success:hover {background-color: #46a049;}
+
+.info {background-color: #2196F3;}
+.info:hover {background: #0b7dda;}
+
+.warning {background-color: #ff9800;}
+.warning:hover {background: #e68a00;}
+
+.danger {background-color: #f44336;}
+.danger:hover {background: #da190b;}
+
+.default {background-color: #e7e7e7; color: black;}
+.default:hover {background: #ddd;}
+
+/* FORMULARIO */
+* {box-sizing: border-box}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity:1;
+}
+
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+.cancelbtn, .signupbtn {
+    float: left;
+    width: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+        width: 100%;
+    }
 }
