@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="Sitio de pruebas que permite acceder a todos mis repositorios en github" name="description" />
+    <meta content="@jdperea59" name="author" />
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Repositiorios JDPEREA59">
+    <meta property="og:locale" content="es">
+    <meta property="og:url" content="http://jdperea59.000webhostapp.com/">
+    <meta property="og:title" content="Probando mis conocimientos en html">
+    <meta property="og:description" content="Estos son mis repositorios en github, todos son compartidos">
+    <meta property="og:image" content="http://jdperea59.000webhostapp.com/pruebas/images/cinema_3d_glasses_icon-icons.com_66129.ico">
+    <meta property="og:image:alt" content="Glases 3d old fashioned">
+
+    <link rel='shortcut icon' href='../images/cinema_3d_glasses_icon-icons.com_66129.ico' type='image/x-icon' sizes="16x16" />
+    <!-- ================== ESTILOS CSS ================== -->
+    <link href="../css/style.css" rel="stylesheet"/>
+    <link href="../plugins/DataTables-1.10.22/css/jquery.dataTables.min.css" rel="stylesheet"/>
+    <!-- Bootstrap -->
+    <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com"><!-- FontsGoogle -->
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <style>
+
+    </style>
+
+    <!-- ================== SCRIPTS JS ================== -->
+    <script src="../plugins/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
+    <script src="../plugins/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <title>Mis Repositorios Juan Diego</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><img src="../images/cinema_3d_glasses_icon-icons.com_66129.ico" style="height: 4em; border-radius: 40px; background-color: #fff;"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="repositorios.html">Mis repositorios</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menu
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="https://getbootstrap.com/docs/4.5/components/navbar/" target="_blank">Bootstrap.com</a>
+                    <a class="dropdown-item" href="https://www.google.com/doodles/" target="_blank">Google</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="https://repl.it/@jdperea" target="_blank">Mi repl.it</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- Aqui esta el usuario para buscarlo en el onload -->
+<input type="hidden" id="git" placeholder="What user are you looking for?" value="jdperea">
+
+<table id="data_table2" class="table dataTable user-list">
+    <thead>
+    <th>Url Repositorio</th>
+    <th>Nombre Repositorio</th>
+    </thead>
+    <tfoot>
+    <th>Url Repositorio</th>
+    <th>Nombre Repositorio</th>
+    </tfoot>
+
+</table>
+<script>
+    $(document).ready( function () {
+        getRepositorie();
+    });
+    function setDataTable(){
+        $('#data_table2').DataTable({
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "No se encontraron resultados",
+                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast":"Último",
+                    "sNext":"Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "sProcessing":"Procesando...",
+            }
+        });
+    }
+    /*
+     * Tomado de Stack y ajustado a la necesidad
+     * https://es.stackoverflow.com/questions/210449/obtener-repositorios-de-un-usuario-de-github-con-javascript
+     */
+    function getRepositorie() {
+        var request = new XMLHttpRequest();
+        var search = document.getElementById("git").value;
+        request.open("GET", "https://api.github.com/users/" + search + "/repos", true);
+        request.onload = () => show_list(JSON.parse(request.responseText));
+        request.send();
+    }
+
+    function show_list(user) {
+        var userList = document.getElementsByClassName("user-list")[0];
+        var userUl = document.createElement("tbody");
+        var valor = user;
+
+        for (var i in user) {
+            var userLi = document.createElement("tr");
+            var userRepo = document.createElement("td");
+            var userRepo1 = document.createTextNode("" + user[i].url);
+            var userRepo2 = document.createElement("td");
+            var userRepo3 = document.createTextNode("" + user[i].name);
+            userRepo.appendChild(userRepo3);
+            userLi.appendChild(userRepo2);
+            userRepo2.appendChild(userRepo1);
+            userLi.appendChild(userRepo);
+            userUl.appendChild(userLi);
+        }
+        userList.appendChild(userUl);
+        setDataTable()
+    }
+
+</script>
+</body>
+</html>
